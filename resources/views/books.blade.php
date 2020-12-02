@@ -26,10 +26,10 @@
             <th>#</th>
             <th>Nombre</th>
             <th>Primer Apellido</th>
-            <th>Segundo Apellido</th>
-            <th>Curp</th>
-            <th>Boleta</th>
-            <th>Estado</th>
+{{--            <th>Segundo Apellido</th>--}}
+{{--            <th>Curp</th>--}}
+{{--            <th>Boleta</th>--}}
+{{--            <th>Estado</th>--}}
             <th width="280px">Action</th>
         </tr>
         </thead>

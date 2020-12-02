@@ -17,10 +17,10 @@ class CreateBooksTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('firstname');
-            $table->string('secondname');
-            $table->string('curp');
-            $table->integer('boleta');
-            $table->string('status');
+            $table->string('secondname')->nullable();
+            $table->string('curp')->nullable();
+            $table->integer('boleta')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
