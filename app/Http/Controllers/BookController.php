@@ -47,7 +47,7 @@ class BookController extends Controller
             'id' => $request->book_id
         ],[
             'name' => $request->name,
-            'author' => $request->author
+            'firstname' => $request->firstname
         ]);
 
         // return response

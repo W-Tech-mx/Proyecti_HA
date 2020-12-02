@@ -24,8 +24,12 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Author</th>
+            <th>Nombre</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Curp</th>
+            <th>Boleta</th>
+            <th>Estado</th>
             <th width="280px">Action</th>
         </tr>
         </thead>
@@ -52,10 +56,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Author</label>
+                        <label class="col-sm-2 control-label">firstname</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="author" name="author"
-                                   placeholder="Enter author name"
+                            <input type="text" class="form-control" id="firstname" name="firstname"
+                                   placeholder="Enter firstname name"
                                    value="" maxlength="50" required="" autocomplete="off">
                         </div>
                     </div>
@@ -87,7 +91,7 @@
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},
-                {data: 'author', name: 'author'},
+                {data: 'firstname', name: 'firstname'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
@@ -133,7 +137,7 @@
                 $('#ajaxModel').modal('show');
                 $('#book_id').val(data.id);
                 $('#name').val(data.name);
-                $('#author').val(data.author);
+                $('#firstname').val(data.firstname);
             })
         });
 
