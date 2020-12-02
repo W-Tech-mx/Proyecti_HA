@@ -15,7 +15,7 @@
 <div class="container">
     <div class="container-fluid">
         <div class="row">
-            <h4 class="one">Books</h4>
+            <h4 class="one">Registro</h4>
             <button class="btn btn-info ml-auto" id="createNewBook">Create Book</button>
         </div>
     </div>
@@ -26,10 +26,10 @@
             <th>#</th>
             <th>Nombre</th>
             <th>Primer Apellido</th>
-{{--            <th>Segundo Apellido</th>--}}
-{{--            <th>Curp</th>--}}
-{{--            <th>Boleta</th>--}}
-{{--            <th>Estado</th>--}}
+            <th>Segundo Apellido</th>
+            <th>Curp</th>
+            <th>Boleta</th>
+            <th>Estado</th>
             <th width="280px">Action</th>
         </tr>
         </thead>
@@ -63,6 +63,14 @@
                                    value="" maxlength="50" required="" autocomplete="off">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">secondname</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="secondname" name="secondname"
+                                   placeholder="Enter secondname name"
+                                   value="" maxlength="50" required="" autocomplete="off">
+                        </div>
+                    </div>
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-primary" id="saveBtn">Save</button>
                     </div>
@@ -92,6 +100,7 @@
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},
                 {data: 'firstname', name: 'firstname'},
+                {data: 'secondname', name: 'secondname'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
@@ -138,6 +147,7 @@
                 $('#book_id').val(data.id);
                 $('#name').val(data.name);
                 $('#firstname').val(data.firstname);
+                $('#secondname').val(data.secondname);
             })
         });
 
