@@ -10,9 +10,9 @@ class Book extends Model
         'name',
         'firstname',
         'secondname',
-        // 'curp',
-        // 'boleta',
-        // 'status'
+         'curp',
+         'boleta',
+         'status'
 
     ];
 }

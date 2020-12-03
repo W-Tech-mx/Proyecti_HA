@@ -43,12 +43,24 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validate = $this->validate($request,[
+            'name'=>'required',
+            'firstname'=>'required',
+            'secondname'=>'required',
+            'curp'=>'required',
+           'boleta'=>'required|numeric|',
+        ]);
+
         Book::updateOrCreate([
             'id' => $request->book_id
         ],[
             'name' => $request->name,
             'firstname' => $request->firstname,
             'secondname' => $request->secondname,
+            'curp' => $request->curp,
+            'boleta' => $request->boleta,
+            'status' => $request->status,
         ]);
 
         // return response
