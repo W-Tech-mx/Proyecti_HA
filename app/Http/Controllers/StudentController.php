@@ -40,11 +40,11 @@ class StudentController extends Controller
     {
         //
         $validation = $this->validate($request,[
-           'name'=>'required',
-           'firstname'=>'required',
+           'name'=>'required|alpha|min:3|max:50',
+           'firstname'=>'required|alpha|min:3|max:30',
             // 'secondname'=>'alpha|min:3|max:30',
-           'curp'=>'required',
-           'boleta'=>'required',
+           'curp'=>'required|alpha_num|size:18',
+           'boleta'=>'required|numeric|digits:10',
         ]);
 
         Student::create($request->all());
@@ -87,11 +87,11 @@ class StudentController extends Controller
     public function update(Request $request, $id)    {
         //
         $this->validate($request,[
-           'name'=>'required',
-           'firstname'=>'required',
+           'name'=>'required|alpha|min:3|max:50',
+           'firstname'=>'required|alpha|min:3|max:30',
             // 'secondname'=>'alpha|min:3|max:30',
-           'curp'=>'required',
-           'boleta'=>'required',
+           'curp'=>'required|alpha_num|size:18',
+           'boleta'=>'required|numeric|digits:10',
         ]);
 
         Student::find($id)->update($request->all());
