@@ -48,13 +48,10 @@ class BookController extends Controller
         $validate = $this->validate($request,[
             'name'=>'required|alpha|min:3|max:50',
             'firstname'=>'required|alpha|min:3|max:30',
-            'secondname'=>'required|alpha|min:3|max:30',
+            // 'secondname'=>'alpha|min:3|max:30',
            'curp'=>'required|alpha_num|size:18',
            'boleta'=>'required|numeric|digits:10',
         ]);
-
-
-
 
         Book::updateOrCreate([
             'id' => $request->book_id
