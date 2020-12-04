@@ -73,7 +73,7 @@ class StudentController extends Controller
     public function edit($id)
     {
         //
-        $libro=Student::find($id);
+        $student=Student::find($id);
         return view('student.edit',compact('student'));
     }
 
@@ -87,11 +87,11 @@ class StudentController extends Controller
     public function update(Request $request, $id)    {
         //
         $this->validate($request,[
-           'name'=>'required|alpha|min:3|max:50',
-           'firstname'=>'required|alpha|min:3|max:30',
+           'name'=>'required',
+           'firstname'=>'required',
             // 'secondname'=>'alpha|min:3|max:30',
-           'curp'=>'required|alpha_num|size:18',
-           'boleta'=>'required|numeric|digits:10',
+           'curp'=>'required',
+           'boleta'=>'required',
         ]);
 
         Student::find($id)->update($request->all());

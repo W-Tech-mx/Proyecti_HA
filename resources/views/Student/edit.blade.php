@@ -1,5 +1,6 @@
 @extends('layouts.layout')
 @section('content')
+
 <div class="row">
 	<section class="content">
 		<div class="col-md-8 col-md-offset-2">
@@ -21,52 +22,74 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Nuevo Libro</h3>
+					<h3 class="panel-title">Editar Alumno</h3>
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
-						<form method="POST" action="{{ route('libro.update',$libro->id) }}"  role="form">
+						<form method="POST" action="{{ route('student.update',$student->id) }}"  role="form">
 							{{ csrf_field() }}
 							<input name="_method" type="hidden" value="PATCH">
-							<div class="row">
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="nombre" id="nombre" class="form-control input-sm" value="{{$libro->nombre}}">
-									</div>
-								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="npagina" id="npagina" class="form-control input-sm" value="{{$libro->npagina}}">
-									</div>
-								</div>
-							</div>
 
-							<div class="form-group">
-								<textarea name="resumen" class="form-control input-sm"  placeholder="Resumen">{{$libro->resumen}}</textarea>
-							</div>
 							<div class="row">
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="edicion" id="edicion" class="form-control input-sm" value="{{$libro->edicion}}">
+
+								<div class="form-group">
+									<label for="name" class="col-12 control-label "><span class="text-danger">*</span> Nombre </label>
+
+									<div class="col-12">
+										<input type="text" class="form-control" id="name" name="name" placeholder="Enter name"  value="{{$student->name}}">
+										<span class="text-danger p-1">{{ $errors->first('name') }}</span>
 									</div>
 								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="precio" id="precio" class="form-control input-sm" value="{{$libro->precio}}">
+
+								<div class="form-group">
+									<label class="col-sm-12 control-label"><span class="text-danger">*</span> Apellido paterno</label>
+									<div class="col-sm-12">
+										<input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter firstname name" value="{{$student->firstname}}">
 									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<textarea name="autor" class="form-control input-sm" placeholder="Autor">{{$libro->autor}}</textarea>
-							</div>
-							<div class="row">
+
+								<div class="form-group">
+									<label class="col-sm-12 control-label"><span class="text-danger">*</span> Apellido materno</label>
+									<div class="col-sm-12">
+										<input type="text" class="form-control" id="secondname" name="secondname" placeholder="Enter secondname name" value="{{$student->secondname}}">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="name" class="col-sm-12 control-label"><span class="text-danger">*</span>CURP</label>
+									<div class="col-sm-12">
+										<input type="text" class="form-control" id="curp" name="curp" placeholder="Enter curp" value="{{$student->curp}}">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-12 control-label"><span class="text-danger">*</span>Boleta</label>
+									<div class="col-sm-12">
+										<input type="text" class="form-control" id="boleta" name="boleta" placeholder="Enter boleta name" value="{{$student->boleta}}">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-12 control-label"><span class="text-danger">*</span>Estatus</label>
+									<div class="col-sm-12">
+
+											   <select class="form-control" id="status" name="status" value="">
+												<option value="activo">Activar</option>
+												<option value="desactivado">Desactivar</option>
+												<option value="baja">Baja</option>
+
+											  </select>
+
+									</div>
+								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<input type="submit"  value="Actualizar" class="btn btn-success btn-block">
-									<a href="{{ route('libro.index') }}" class="btn btn-info btn-block" >Atrás</a>
-								</div>	
+									<input type="submit"  value="Guardar" class="btn btn-success btn-block">
+									<a href="{{ route('student.index') }}" class="btn btn-info btn-block" >Atrás</a>
+								</div>
 
 							</div>
+
 						</form>
 					</div>
 				</div>

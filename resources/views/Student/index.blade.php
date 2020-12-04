@@ -45,13 +45,16 @@
                       @if($students->count())
                       @foreach($students as $student)
                       <tr>
+                          <td>#</td>
                         <td>{{$student->name}}</td>
                         <td>{{$student->firstname}}</td>
                         <td>{{$student->secondname}}</td>
                         <td>{{$student->curp}}</td>
                         <td>{{$student->boleta}}</td>
                         <td>
-                            <a class="btn btn-primary btn-xs" href="{{action('StudentController@edit', $student->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a class="btn btn-primary btn-xs" href="{{action('StudentController@edit', $student->id)}}" >
+                                <span class="glyphicon glyphicon-pencil">Edit</span>
+                            </a>
                         </td>
 
                         <td>
@@ -60,7 +63,9 @@
                            {{csrf_field()}}
 
                            <input name="_method" type="hidden" value="DELETE">
-                           <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                           <button class="btn btn-danger btn-xs" type="submit">
+                               <span class="glyphicon glyphicon-trash">Elimar</span>
+                           </button>
 
                           </form>
                          </td>
