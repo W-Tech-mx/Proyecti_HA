@@ -20,7 +20,7 @@ class TerminalTest extends TestCase
     private $lineSize;
     private $ansiCon;
 
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->colSize = getenv('COLUMNS');
         $this->lineSize = getenv('LINES');
@@ -28,7 +28,7 @@ class TerminalTest extends TestCase
         $this->resetStatics();
     }
 
-    protected function tearDown(): void
+    protected function tearDown()
     {
         putenv($this->colSize ? 'COLUMNS='.$this->colSize : 'COLUMNS');
         putenv($this->lineSize ? 'LINES' : 'LINES='.$this->lineSize);
@@ -60,7 +60,7 @@ class TerminalTest extends TestCase
         $this->assertSame(60, $terminal->getHeight());
     }
 
-    public function test_zero_values()
+    public function testZeroValues()
     {
         putenv('COLUMNS=0');
         putenv('LINES=0');

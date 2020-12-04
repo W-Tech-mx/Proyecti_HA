@@ -114,10 +114,12 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     public function getIterator()
     {
         if (!\is_array($value = $this->getValue())) {
-            throw new \LogicException(sprintf('%s object holds non-iterable type "%s".', self::class, \gettype($value)));
+            throw new \LogicException(sprintf('"%s" object holds non-iterable type "%s".', self::class, \gettype($value)));
         }
 
-        yield from $value;
+        foreach ($value as $k => $v) {
+            yield $k => $v;
+        }
     }
 
     public function __get($key)
@@ -165,6 +167,18 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         }
 
         return sprintf('%s (count=%d)', $this->getType(), \count($value));
+    }
+
+    /**
+     * @return array The raw data structure
+     *
+     * @deprecated since version 3.3. Use array or object access instead.
+     */
+    public function getRawData()
+    {
+        @trigger_error(sprintf('The "%s()" method is deprecated since Symfony 3.3 and will be removed in 4.0. Use the array or object access instead.', __METHOD__));
+
+        return $this->data;
     }
 
     /**
@@ -292,7 +306,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
             }
         } elseif (Stub::TYPE_REF === $item->type) {
             if ($item->handle) {
-                if (!isset($refs[$r = $item->handle - (PHP_INT_MAX >> 1)])) {
+                if (!isset($refs[$r = $item->handle - (\PHP_INT_MAX >> 1)])) {
                     $cursor->refIndex = $refs[$r] = $cursor->refIndex ?: ++$refs[0];
                 } else {
                     $firstSeen = false;
@@ -360,7 +374,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
                     break;
 
                 default:
-                    throw new \RuntimeException(sprintf('Unexpected Stub type: %s', $item->type));
+                    throw new \RuntimeException(sprintf('Unexpected Stub type: "%s".', $item->type));
             }
         } elseif ('array' === $type) {
             $dumper->enterHash($cursor, Cursor::HASH_INDEXED, 0, false);

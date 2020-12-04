@@ -21,7 +21,7 @@ trait DatabaseRule
     protected $column;
 
     /**
-     * The extra where clauses for the query.
+     * There extra where clauses for the query.
      *
      * @var array
      */
@@ -50,7 +50,7 @@ trait DatabaseRule
     /**
      * Set a "where" constraint on the query.
      *
-     * @param  \Closure|string  $column
+     * @param  string|\Closure  $column
      * @param  array|string|null  $value
      * @return $this
      */
@@ -166,7 +166,7 @@ trait DatabaseRule
     protected function formatWheres()
     {
         return collect($this->wheres)->map(function ($where) {
-            return $where['column'].','.'"'.str_replace('"', '""', $where['value']).'"';
+            return $where['column'].','.$where['value'];
         })->implode(',');
     }
 }

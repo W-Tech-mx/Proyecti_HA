@@ -3,11 +3,9 @@
 namespace Illuminate\Foundation\Bootstrap;
 
 use Dotenv\Dotenv;
-use Dotenv\Exception\InvalidFileException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Support\Env;
+use Dotenv\Exception\InvalidPathException;
 use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Console\Output\ConsoleOutput;
+use Illuminate\Contracts\Foundation\Application;
 
 class LoadEnvironmentVariables
 {
@@ -26,9 +24,9 @@ class LoadEnvironmentVariables
         $this->checkForSpecificEnvironmentFile($app);
 
         try {
-            $this->createDotenv($app)->safeLoad();
-        } catch (InvalidFileException $e) {
-            $this->writeErrorAndDie($e);
+            (new Dotenv($app->environmentPath(), $app->environmentFile()))->load();
+        } catch (InvalidPathException $e) {
+            //
         }
     }
 
@@ -73,36 +71,5 @@ class LoadEnvironmentVariables
         }
 
         return false;
-    }
-
-    /**
-     * Create a Dotenv instance.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @return \Dotenv\Dotenv
-     */
-    protected function createDotenv($app)
-    {
-        return Dotenv::create(
-            $app->environmentPath(),
-            $app->environmentFile(),
-            Env::getFactory()
-        );
-    }
-
-    /**
-     * Write the error information to the screen and exit.
-     *
-     * @param  \Dotenv\Exception\InvalidFileException  $e
-     * @return void
-     */
-    protected function writeErrorAndDie(InvalidFileException $e)
-    {
-        $output = (new ConsoleOutput)->getErrorOutput();
-
-        $output->writeln('The environment file is invalid!');
-        $output->writeln($e->getMessage());
-
-        die(1);
     }
 }

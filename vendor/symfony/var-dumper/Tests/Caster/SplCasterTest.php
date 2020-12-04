@@ -166,37 +166,49 @@ EOTXT;
 
     public function testCastArrayObject()
     {
+        if (\defined('HHVM_VERSION')) {
+            $this->markTestSkipped('HHVM as different internal details.');
+        }
         $var = new \ArrayObject([123]);
         $var->foo = 234;
 
         $expected = <<<EOTXT
 ArrayObject {
   +"foo": 234
+  -storage: array:1 [
+    0 => 123
+  ]
   flag::STD_PROP_LIST: false
   flag::ARRAY_AS_PROPS: false
   iteratorClass: "ArrayIterator"
-  storage: array:1 [
-    0 => 123
-  ]
 }
 EOTXT;
+        if (\PHP_VERSION_ID < 70400) {
+            $expected = str_replace('-storage:', 'storage:', $expected);
+        }
         $this->assertDumpEquals($expected, $var);
     }
 
     public function testArrayIterator()
     {
+        if (\defined('HHVM_VERSION')) {
+            $this->markTestSkipped('HHVM as different internal details.');
+        }
         $var = new MyArrayIterator([234]);
 
         $expected = <<<EOTXT
 Symfony\Component\VarDumper\Tests\Caster\MyArrayIterator {
   -foo: 123
-  flag::STD_PROP_LIST: false
-  flag::ARRAY_AS_PROPS: false
-  storage: array:1 [
+  -storage: array:1 [
     0 => 234
   ]
+  flag::STD_PROP_LIST: false
+  flag::ARRAY_AS_PROPS: false
 }
 EOTXT;
+        if (\PHP_VERSION_ID < 70400) {
+            $expected = str_replace('-storage:', 'storage:', $expected);
+        }
         $this->assertDumpEquals($expected, $var);
     }
 
