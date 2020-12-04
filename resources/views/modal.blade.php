@@ -24,7 +24,7 @@
                         <label for="name" class="col-12 control-label "><span class="text-danger">*</span> Nombre </label>
 
                         <div class="col-12">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"  value="" maxlength="50" required="" autocomplete="off">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"  value="" >
                             <span class="text-danger p-1">{{ $errors->first('name') }}</span>
                         </div>
                     </div>
@@ -39,37 +39,30 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-12 control-label"><span class="text-danger">*</span> Apellido materno</label>
+                        <label class="col-sm-12 control-label"> Apellido materno</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="secondname" name="secondname"
-                                   placeholder="Enter secondname name"
-                                   value="" maxlength="50" required="" autocomplete="off">
+                            <input type="text" class="form-control" id="secondname" name="secondname"  placeholder="Enter secondname name"  value="" >
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="name" class="col-sm-12 control-label"><span class="text-danger">*</span>CURP</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="curp" name="curp" placeholder="Enter curp"
-                                   value="" maxlength="50" required="" autocomplete="off">
+                            <input type="text" class="form-control" id="curp" name="curp" placeholder="Enter curp"  value="" >
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-12 control-label"><span class="text-danger">*</span>Boleta</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="boleta" name="boleta"
-                                   placeholder="Enter boleta name"
-                                   value="" maxlength="50" required="" autocomplete="off">
+                            <input type="text" class="form-control" id="boleta" name="boleta" placeholder="Enter boleta name" value="" >
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-12 control-label"><span class="text-danger">*</span>Estatus</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="status" name="status"
-                                   placeholder="Enter status "
-                                   value="" maxlength="50" required="" autocomplete="off">
+                            <input type="text" class="form-control" id="status" name="status" placeholder="Enter status "  value="" >
                         </div>
                     </div>
 

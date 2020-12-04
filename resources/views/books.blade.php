@@ -111,7 +111,7 @@
         $('body').on('click', '.editBook', function () {
             var book_id = $(this).data('id');
             $.get("{{ url('books') }}" + '/' + book_id + '/edit', function (data) {
-                $('#modelHeading').html("Edit Book");
+                $('#modelHeading').html("Editar Registro");
                 $('#saveBtn').html('Editar registro');
                 $('#ajaxModel').modal('show');
                 $('#book_id').val(data.id);

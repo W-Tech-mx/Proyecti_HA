@@ -53,6 +53,9 @@ class BookController extends Controller
            'boleta'=>'required|numeric|digits:10',
         ]);
 
+
+
+
         Book::updateOrCreate([
             'id' => $request->book_id
         ],[

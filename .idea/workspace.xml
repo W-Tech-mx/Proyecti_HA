@@ -20,10 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a2b6c68-9c57-425a-b0d6-078f392a74ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modal.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/books.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/books.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modal.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +71,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="487" y="439" key="NewPhpFileDialog/0.0.2560.1040/-2560.0.2560.1040@0.0.2560.1040" timestamp="1607060364434" />
+    <state x="308" y="242" key="run.anything.popup" timestamp="1607060862543">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="308" y="242" key="run.anything.popup/0.0.2560.1040/-2560.0.2560.1040@0.0.2560.1040" timestamp="1607060862543" />
     <state x="315" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1607059483169">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
