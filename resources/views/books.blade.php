@@ -2,35 +2,24 @@
 
 @section('content')
 
-<div class="container">
+<div class="container mt-5">
 
-    <div class="container-fluid">
+    <div class="container-fluid  mb-3">
         <div class="row">
             <h4 class="one">Registro</h4>
             <button class="btn btn-info ml-auto" id="createNewBook">Registrar Alumno</button>
         </div>
     </div>
 
-
-    <div class="alert alert-success alert-dismissible" role="alert" id="msj-succes" style="display: none">
-        <strong id="msj">Exito</strong>
-    </div>
-
-    <div class="alert alert-danger alert-dismissible" role="alert" id="msj-error" style="display: none">
-        <strong id="msj">FALLO</strong>
-    </div>
-
-    @if(Session::has('succes'))
-        <div class="alert alert-success alert-dismissible fade show mb-4 mt-4" role="alert">
-            {{Session::get('succes')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-
     <table id="dataTable" class="table table-striped table-bordered">
         <thead>
+
+        <div class="col-md-12">
+            <div class="alert alert-success d-none" id="msg_div">
+                <span id="res_message">Creado exitosamente</span>
+            </div>
+        </div>
+
         <tr>
             <th>#</th>
             <th>Nombre</th>
@@ -78,10 +67,10 @@
 
         // create new book
         $('#createNewBook').click(function () {
-            $('#saveBtn').html("Create");
+            $('#saveBtn').html("Crear");
             $('#book_id').val('');
             $('#bookForm').trigger("reset");
-            $('#modelHeading').html("Create New Book");
+            $('#modelHeading').html("Crear registro");
             $('#ajaxModel').modal('show');
         });
 
@@ -100,12 +89,17 @@
                     $('#ajaxModel').modal('hide');
                     table.draw();
                     $('#saveBtn').html('Save');
-                    $("#msj-succes").fadeIn;
+                    $('#msg_div').removeClass('d-none');
+                    document.getElementById("post-form").reset();
+                    setTimeout(function(){
+                    $('#res_message').hide();
+                    $('#msg_div').hide();
+                    },10000);
                     console.log('se guardo');
-                    window.no
+
                 },
                 error: function (data) {
-                    console.log('Error:', data);
+                    console.log('No se guardo:', data);
                     $('#msj').html(msj.responseJSON.genre);
                     $('#msj-error').fadeIn;
                     $('#saveBtn').html('Save');
@@ -118,7 +112,7 @@
             var book_id = $(this).data('id');
             $.get("{{ url('books') }}" + '/' + book_id + '/edit', function (data) {
                 $('#modelHeading').html("Edit Book");
-                $('#saveBtn').html('Update');
+                $('#saveBtn').html('Editar registro');
                 $('#ajaxModel').modal('show');
                 $('#book_id').val(data.id);
                 $('#name').val(data.name);
@@ -133,7 +127,7 @@
         // delete book
         $('body').on('click', '.deleteBook', function () {
             var book_id = $(this).data("id");
-            confirm("Are You sure want to delete !");
+            confirm("Estas seguro que deseas eliminar el alumno !");
 
             $.ajax({
                 type: "DELETE",
