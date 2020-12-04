@@ -1,43 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Laravel 6.2 Ajax CRUD with DataTables Tutorial For Beginners - MyNotePaper.com</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"/>
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
+@extends('dashboard')
+
+@section('content')
+
 <div class="container">
+
     <div class="container-fluid">
         <div class="row">
             <h4 class="one">Registro</h4>
             <button class="btn btn-info ml-auto" id="createNewBook">Registrar Alumno</button>
         </div>
     </div>
-    <br>
+
 
     <div class="alert alert-success alert-dismissible" role="alert" id="msj-succes" style="display: none">
-        <strong id="msj">eXITO</strong>
+        <strong id="msj">Exito</strong>
     </div>
 
     <div class="alert alert-danger alert-dismissible" role="alert" id="msj-error" style="display: none">
         <strong id="msj">FALLO</strong>
     </div>
 
-                        @if(Session::has('succes'))
-                            <div class="alert alert-success alert-dismissible fade show mb-4 mt-4" role="alert">
-                                {{Session::get('succes')}}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
+    @if(Session::has('succes'))
+        <div class="alert alert-success alert-dismissible fade show mb-4 mt-4" role="alert">
+            {{Session::get('succes')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     <table id="dataTable" class="table table-striped table-bordered">
         <thead>
         <tr>
@@ -54,94 +45,10 @@
         <tbody>
         </tbody>
     </table>
+
 </div>
 
-{{-- create/update book modal--}}
-<div class="modal fade" id="ajaxModel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modelHeading"></h4>
-            </div>
-            <div class="modal-body">
-                <form id="bookForm" name="bookForm" class="form-horizontal">
-
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-
-                    <input type="hidden" name="book_id" id="book_id">
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Name</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"
-                                   value="{{ old('content') }}" maxlength="50" required="" autocomplete="off">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">firstname</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="firstname" name="firstname"
-                                   placeholder="Enter firstname name"
-                                   value="{{ old('content') }}" maxlength="50" required="" autocomplete="off">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">secondname</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="secondname" name="secondname"
-                                   placeholder="Enter secondname name"
-                                   value="" maxlength="50" required="" autocomplete="off">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">curp</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="curp" name="curp" placeholder="Enter curp"
-                                   value="" maxlength="50" required="" autocomplete="off">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">boleta</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="boleta" name="boleta"
-                                   placeholder="Enter boleta name"
-                                   value="{{ old('content') }}" maxlength="50" required="" autocomplete="off">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">status</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="status" name="status"
-                                   placeholder="Enter status "
-                                   value="" maxlength="50" required="" autocomplete="off">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary" id="saveBtn">Guardar</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-</body>
+@include('modal')
 
 <script type="text/javascript">
     $(function () {
@@ -242,4 +149,5 @@
 
     });
 </script>
-</html>
+
+@endsection
