@@ -30,6 +30,14 @@
         <strong id="msj">FALLO</strong>
     </div>
 
+                        @if(Session::has('succes'))
+                            <div class="alert alert-success alert-dismissible fade show mb-4 mt-4" role="alert">
+                                {{Session::get('succes')}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
     <table id="dataTable" class="table table-striped table-bordered">
         <thead>
         <tr>
@@ -67,6 +75,7 @@
                         </ul>
                     </div>
                 @endif
+
 
                     <input type="hidden" name="book_id" id="book_id">
 
@@ -186,6 +195,7 @@
                     $('#saveBtn').html('Save');
                     $("#msj-succes").fadeIn;
                     console.log('se guardo');
+                    window.no
                 },
                 error: function (data) {
                     console.log('Error:', data);

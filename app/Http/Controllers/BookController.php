@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use Illuminate\Http\Request;
 use DataTables;
+use Session;
 
 class BookController extends Controller
 {
@@ -68,6 +69,8 @@ class BookController extends Controller
             'success' => true,
             'message' => 'Book saved successfully.',
         ];
+
+         Session::flash('succes', 'Se ha registrado su pagina con exito');
         return response()->json($response, 200);
     }
 
